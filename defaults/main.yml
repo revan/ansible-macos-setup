@@ -1,0 +1,7 @@
+---
+repo_dir: "{{ ansible_env.HOME }}/repo"
+dotfiles_repo: "https://github.com/revan/dotfiles.git"
+dotfiles_stow_packages:
+  - vim
+  - karabiner
+  - yabai

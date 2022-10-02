@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  vars_files:
+    - "../defaults/main.yml"
+  tasks:
+    - name: "Install stow from homebrew"
+      community.general.homebrew:
+        name: stow
+        state: present
+
+    - name: "Clone dotfiles repository"
+      git:
+        repo: "{{ dotfiles_repo }}"
+        dest: "{{ repo_dir }}/dotfiles"
+
+    - name: "Link dotfiles"
+      shell: stow --target="{{ ansible_env.HOME }}" {{ item }} --restow
+      args:
+        chdir: "{{ repo_dir }}/dotfiles"
+      with_items: "{{ dotfiles_stow_packages }}"
