@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  vars_files:
+    - "../defaults/main.yml"
+  tasks:
+    - name: "Install homebrew"
+      include_role:
+        name: geerlingguy.mac.homebrew
+
+    - name: "Make sure homebrew bin is in path"
+      ansible.builtin.lineinfile:
+        path: /etc/paths
+        state: present
+        line: "/opt/homebrew/bin"
+      become: true
+      become_user: root
+
+    - name: "Install packages via brew casks"
+      community.general.homebrew_cask:
+        name: "{{ item }}"
+      ignore_errors: yes
+      with_items: "{{ homebrew_cask_packages }}"
+
+    - name: "Install homebrew packages"
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ homebrew_packages }}"
+
+    - name: "Upgrade homebrew packages"
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true

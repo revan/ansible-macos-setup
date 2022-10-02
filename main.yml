@@ -1,0 +1,12 @@
+---
+- name: "Install homebrew and packages"
+  ansible.builtin.import_playbook: tasks/install_homebrew_and_packages.yml
+
+- name: "Configure dotfiles"
+  ansible.builtin.import_playbook: tasks/configure_dotfiles.yml
+
+- name: "Configure development environment"
+  ansible.builtin.import_playbook: tasks/configure_development_environment.yml
+
+- name: "Configure window management"
+  ansible.builtin.import_playbook: tasks/configure_window_management.yml

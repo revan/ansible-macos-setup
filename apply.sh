@@ -1,2 +1,2 @@
 #!/bin/sh
-ansible-playbook -i "localhost," -c local macos_setup.yml --ask-become-pass
+ansible-playbook -i "localhost," -c local main.yml --ask-become-pass

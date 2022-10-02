@@ -5,3 +5,38 @@ dotfiles_stow_packages:
   - vim
   - karabiner
   - yabai
+
+homebrew_cask_packages:
+  - datagrip
+  - pycharm
+  - tableplus
+  - google-chrome
+  - iterm2
+  - ngrok
+  - slack
+  - zoom
+  - spotify
+  - karabiner-elements
+  - multitouch
+
+homebrew_packages:
+  - fish
+  - asdf
+  - awscli
+  - coreutils
+  - curl
+  - htop
+  - openssl
+  - postgresql
+  - redis
+  - sqlite3
+  - tmux
+  - unzip
+  - vim
+  - watchman
+  - shellcheck
+  - git
+  - tig
+
+python_version: "3.10.0"
+node_version: "16.4.2"

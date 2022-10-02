@@ -1,0 +1,51 @@
+---
+- hosts: localhost
+  vars_files:
+    - "../defaults/main.yml"
+  tasks:
+    - name: "Get the path to fish"
+      local_action: command which fish
+      register: fish_path
+
+    - name: "Ensure homebrew fish is in allowed shells"
+      lineinfile:
+        path: /etc/shells
+        line: "{{ fish_path.stdout }}"
+      become: true
+
+    - name: "Set fish as the default shell"
+      shell: chsh -s $(which fish) {{ lookup('env', 'USER') }}
+      become: true
+
+    - name: "Get the path to asdf"
+      local_action: command brew --prefix asdf
+      register: asdf_path
+
+    - name: "Set up asdf in fish"
+      ansible.builtin.lineinfile:
+        path: "/Users/{{ lookup('env', 'USER') }}/.config/fish/config.fish"
+        state: present
+        line: "source {{ asdf_path.stdout }}/libexec/asdf.fish"
+
+    - name: "Install asdf plugins"
+      shell: |
+        source {{ asdf_path.stdout }}/libexec/asdf.sh
+        asdf plugin-add {{ item }} || exit 0
+      with_items:
+        - nodejs
+        - python
+
+    - name: "Install python"
+      shell: |
+        source {{ asdf_path.stdout }}/libexec/asdf.sh
+        asdf install python "{{ python_version }}"
+        asdf global python "{{ python_version }}"
+        pip3 install ansible
+        asdf reshim python
+
+    - name: "Install node"
+      shell: |
+        source {{ asdf_path.stdout }}/libexec/asdf.sh
+        bash {{ asdf_path.stdout }}/plugins/nodejs/bin/import-release-team-keyring
+        asdf install nodejs "{{ node_version }}"
+        asdf global nodejs "{{ node_version }}"

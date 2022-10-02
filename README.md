@@ -1,5 +1,5 @@
 # Ansible macos setup
-Workstation setup automation, heavily based on [this repo](https://github.com/TalkingQuickly/ansible-osx-setup).
+Workstation setup automation, based mostly on [this repo](https://github.com/TalkingQuickly/ansible-osx-setup).
 
 ## Usage
 

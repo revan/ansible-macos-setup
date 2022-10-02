@@ -1,0 +1,55 @@
+---
+- hosts: localhost
+  vars_files:
+    - "../defaults/main.yml"
+  tasks:
+    - name: "Install dockutil from homebrew cask"
+      community.general.homebrew_cask:
+        name: hpedrorodrigues/tools/dockutil
+
+    - name: "Set dock"
+      shell: |
+        defaults write com.apple.dock autohide -bool true
+        defaults write com.apple.dock autohide-delay -float 0
+        defaults write com.apple.dock autohide-time-modifier -float 0.4
+        dockutil --remove all --no-restart
+        dockutil --add /Applications/Google\ Chrome.app --no-restart
+        dockutil --add /Applications/iTerm.app --no-restart
+        dockutil --add /Applications/PyCharm.app --no-restart
+        dockutil --add /Applications/Spotify.app
+
+    - name: "Finder settings"
+      shell: |
+        defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
+        defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
+        defaults write com.apple.finder "ShowPathbar" -bool "true"
+        killall Finder
+
+    - name: "Spaces settings"
+      shell: |
+        defaults write com.apple.dock "mru-spaces" -bool "false"
+        defaults write com.apple.Accessibility ReduceMotionEnabled -bool TRUE
+        killall Dock
+
+    - name: "Keyboard settings"
+      shell: |
+        defaults write -g ApplePressAndHoldEnabled -bool false
+        defaults write NSGlobalDomain NSUserDictionaryReplacementItems -array
+        defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool FALSE
+        defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool FALSE
+        defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool FALSE
+        defaults write com.apple.Accessibility KeyRepeatDelay -float "0.2"
+        defaults write com.apple.Accessibility KeyRepeatInterval -float "0.02"
+
+    - name: "Install window management packages"
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - koekeishiya/formulae/yabai
+        - koekeishiya/formulae/skhd
+
+    - name: "Start window management"
+      shell: |
+        brew services start yabai
+        brew services start skhd
