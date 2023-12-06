@@ -14,7 +14,7 @@
         defaults write com.apple.dock autohide-time-modifier -float 0.4
         dockutil --remove all --no-restart
         dockutil --add /Applications/Google\ Chrome.app --no-restart
-        dockutil --add /Applications/iTerm.app --no-restart
+        dockutil --add /Applications/Alacritty.app --no-restart
         dockutil --add /Applications/PyCharm.app --no-restart
         dockutil --add /Applications/Spotify.app
 
