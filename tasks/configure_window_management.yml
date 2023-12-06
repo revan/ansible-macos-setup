@@ -48,8 +48,10 @@
       with_items:
         - koekeishiya/formulae/yabai
         - koekeishiya/formulae/skhd
+        - sketchybar
 
     - name: "Start window management"
       shell: |
-        brew services start yabai
-        brew services start skhd
+        yabai --start-service
+        skhd --start-service
+

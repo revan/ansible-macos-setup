@@ -5,19 +5,24 @@ dotfiles_stow_packages:
   - vim
   - karabiner
   - yabai
+  - alacritty
+  - sketchybar
 
 homebrew_cask_packages:
-  - datagrip
   - pycharm
   - tableplus
   - google-chrome
-  - iterm2
   - ngrok
   - slack
   - zoom
   - spotify
   - karabiner-elements
   - multitouch
+  - alacritty
+  - beeper
+  - obsidian
+  - sf-symbols
+  - hiddenbar
 
 homebrew_packages:
   - fish
@@ -37,6 +42,9 @@ homebrew_packages:
   - shellcheck
   - git
   - tig
+  - pre-commit
+  - jq
+  - withgraphite/tap/graphite
 
 python_version: "3.10.0"
 node_version: "16.4.2"
