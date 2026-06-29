@@ -48,10 +48,12 @@
       with_items:
         - koekeishiya/formulae/yabai
         - koekeishiya/formulae/skhd
-        - sketchybar
+        - FelixKratz/formulae/sketchybar
 
     - name: "Start window management"
       shell: |
+        curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v2.0.62/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
         yabai --start-service
         skhd --start-service
+        brew services start sketchybar
 

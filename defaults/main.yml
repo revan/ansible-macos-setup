@@ -2,11 +2,13 @@
 repo_dir: "{{ ansible_env.HOME }}/repo"
 dotfiles_repo: "https://github.com/revan/dotfiles.git"
 dotfiles_stow_packages:
+  - fish
   - vim
   - karabiner
   - yabai
-  - alacritty
   - sketchybar
+  - aerospace
+  - ghostty
 
 homebrew_cask_packages:
   - pycharm
