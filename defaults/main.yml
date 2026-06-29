@@ -20,23 +20,30 @@ homebrew_cask_packages:
   - spotify
   - karabiner-elements
   - multitouch
-  - alacritty
   - beeper
   - obsidian
   - sf-symbols
   - hiddenbar
+  - aerospace
+  - bettertouchtool
+  - calibre
+  - claude-code
+  - discord
+  - font-hack-nerd-font
+  - font-sf-pro
+  - ghostty
+  - kicad
+  - mactex-no-gui
+  - steam
 
 homebrew_packages:
   - fish
   - asdf
   - awscli
-  - coreutils
   - curl
   - htop
-  - openssl
   - postgresql
   - redis
-  - sqlite3
   - tmux
   - unzip
   - vim
@@ -46,7 +53,19 @@ homebrew_packages:
   - tig
   - pre-commit
   - jq
-  - withgraphite/tap/graphite
+  - act
+  - gh
+  - imagemagick
+  - lima
+  - neofetch
+  - neovim
+  - pnpm
+  - ruby
+  - stow
+  - uv
+  - watch
+  - zellij
+  - felixkratz/formulae/sketchybar
 
 python_version: "3.10.0"
 node_version: "16.4.2"
